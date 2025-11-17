@@ -1,8 +1,3 @@
-# projeto_teste_tecnico
-01-CASOS_DE_TESTE
-Abrir o diretório 01_CASOS_DE_TESTE e seguir as orientaçoes de casos de teste.
-==============================================================================
-02-PLAYWRIGHT
 📘 README – Execução dos Testes e Fluxo com GitHub
 
 Este documento contém as instruções necessárias para instalação, execução e gerenciamento do projeto de testes automatizados utilizando Playwright.
@@ -205,8 +200,3 @@ npx playwright test --verbose
 💡 Gerar relatório bonito:
 
 npx playwright show-report
-
-==============================================================================
-03-TESTE_API
-Abrir o aplicativo, clique com botão direto sobre a base do projeto e utilize a opção IMPORT from file
-e importe o arquivo com as requisições.
