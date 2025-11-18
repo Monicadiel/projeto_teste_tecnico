@@ -31,16 +31,17 @@ export class CadastroUsuarioPage {
    * @param nomeBase O nome base a ser utilizado.
    * @returns Uma Promise que resolve para o nome único gerado.
    */
-  async gerarNomeUnico(nomeBase: string): Promise<string> {
+  async gerarNomeUnico(): Promise<string> {
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let sufixo = "";
+    let name = "";
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 20; i++) {
       const index = Math.floor(Math.random() * alphabet.length);
-      sufixo += alphabet[index];
+      name += alphabet[index];
     }
 
-    return `${nomeBase} ${sufixo}`;
+    //return `${nomeBase} ${sufixo}`;
+    return name;
   }
 
   /**
@@ -51,14 +52,28 @@ export class CadastroUsuarioPage {
    * @param senha Senha do usuário.
    * @returns Uma Promise que resolve para o nome único gerado.
    */
-  async gerarCadastroUsuarios(nomeBase: string, email: string, senha: string) {
-    const nomeUnico = await this.gerarNomeUnico(nomeBase);
 
-    await this.campoNome.fill(nomeUnico);
+  async gerarCadastroUsuario() {
+    let newUserData: { name: string; email: string; password: string } = {
+      name: "",
+      email: "",
+      password: "",
+    };
+
+    // Depois preenche
+    newUserData.name = await this.gerarNomeUnico();
+    newUserData.email = `${newUserData.name}@example.com`;
+    newUserData.password = "123456";
+
+    return newUserData;
+  }
+
+  async gravarCadastroUsuarios(nomeBase: string, email: string, senha: string) {
+    await this.campoNome.fill(nomeBase);
     await this.campoEmail.fill(email);
     await this.campoSenha.fill(senha);
     await this.page.keyboard.press("Tab");
     await this.page.keyboard.press("Enter"); //para pressionar o botão cadastrar
-    return nomeUnico;
+    return nomeBase;
   }
 }

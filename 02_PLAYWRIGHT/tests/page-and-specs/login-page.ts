@@ -26,6 +26,8 @@ export class LoginPage {
     this.adminCheckboxLocator = this.page.getByTestId("checkbox");
   }
 
+  
+
   /**
    * Retorna a data e hora atual formatada como string para uso em nomes ou emails únicos.
    * Formato: YYYYMMDD_HHMMSS
@@ -129,8 +131,14 @@ export class LoginPage {
    */
   async registerNormalNewUser(administrador: string) {
     const timestamp = this.getFormattedDateTime();
-    const uniqueName = `usuario${timestamp}`;
-    const uniqueEmail = `usuario${timestamp}@gmail.com`;
+
+    const user_random = Math.floor(Math.random() * 1000000);
+
+    const uniqueName = `usuario${timestamp}_${user_random}`;
+
+    console.log(uniqueName);
+
+    const uniqueEmail = `usuario${timestamp}_${user_random}@gmail.com`;
     const password = "12345";
 
     // Preenche os campos

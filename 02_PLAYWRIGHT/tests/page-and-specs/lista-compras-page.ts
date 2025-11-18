@@ -23,10 +23,10 @@ export class ListaComprasPage {
     this.page = page;
 
     this.productNameLocator = this.page.getByTestId("shopping-cart-product-name");
-    this.productQuantity = this.page.getByTestId("shopping-cart-product-quantityshopping-cart-product-quantity");
-    this.increaseButtonLocator = this.page.getByTestId("increase");
-    this.decreaseButtonLocator = this.page.getByTestId("decrease");
-    this.productPriceLocator = this.page.locator("p >> text=2000");
+    this.productQuantity = this.page.getByTestId("shopping-cart-product-quantity");
+    this.increaseButtonLocator = this.page.getByTestId("product-increase-quantity");
+    this.decreaseButtonLocator = this.page.getByTestId("product-decrease-quantity");
+    this.productPriceLocator = this.page.locator("p:has-text('Preço')");
   }
 
   /**

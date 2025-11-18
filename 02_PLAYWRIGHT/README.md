@@ -200,3 +200,12 @@ npx playwright test --verbose
 💡 Gerar relatório bonito:
 
 npx playwright show-report
+
+
+💡 Rodar em firefox:
+npx playwright test --project=firefox --headed
+npx playwright test -g "\[003\]" --project=firefox --headed
+
+💡 Rodar em webkit:
+npx playwright test --project=webkit --headed
+npx playwright test -g "\[003\]" --project=webkit --headed

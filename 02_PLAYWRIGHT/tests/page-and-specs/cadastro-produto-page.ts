@@ -21,17 +21,20 @@ export class CadastroProdutoPage {
     this.btnCadastrar = page.locator('[data-testid="cadastrarProdutos"]');
   }
 
-  async gerarNomeUnico(nomeBase: string): Promise<string> {
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+async gerarNomeUnico(nomeBase: string, workerIndex?: number): Promise<string> {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    let sufixo = "";
-    for (let i = 0; i < 3; i++) {
-      const index = Math.floor(Math.random() * alphabet.length);
-      sufixo += alphabet[index];
-    }
-
-    return `${nomeBase} ${sufixo}`;
+  let sufixo = "";
+  for (let i = 0; i < 3; i++) {
+    const index = Math.floor(Math.random() * alphabet.length);
+    sufixo += alphabet[index];
   }
+
+  const timestamp = Date.now();
+  const random = Math.floor(Math.random() * 10000);
+
+  return `${nomeBase}-${sufixo}-${timestamp}-${random}${workerIndex !== undefined ? `-W${workerIndex}` : ""}`;
+}
 
   async preencherCadastroProduto(nomeBase: string, preco: string, descricao: string, quantidade: string, caminhoImagem: string) {
     const nomeGerado = await this.gerarNomeUnico(nomeBase);

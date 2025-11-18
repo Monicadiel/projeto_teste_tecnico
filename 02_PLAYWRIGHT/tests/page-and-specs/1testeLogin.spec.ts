@@ -24,7 +24,7 @@ test.describe("Teste de Login validando inconsistencias do cenário e o login de
     });
 
     await test.step("Realizar login com SENHA INVÁLIDA e e-mail válido e validar alerta", async () => {
-      await loginPage.login(userData.email , "1234567");
+      await loginPage.login(userData.email , "A12345678");
       await loginPage.clickLoginButton();
       await loginPage.assertInvalidLoginMessageVisible();
       await loginPage.clickCloseErrorButton();

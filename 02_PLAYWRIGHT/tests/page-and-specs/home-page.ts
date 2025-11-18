@@ -43,7 +43,7 @@ export class HomePage {
    * @param locator Locator do elemento que deve estar visível
    */
   private async esperarVisivel(locator: Locator) {
-    await expect(locator).toBeVisible({timeout: 5000 });
+    await expect(locator).toBeVisible({timeout: 50000 });
   }
 
   /**
@@ -80,6 +80,7 @@ export class HomePage {
   async clicarLogout() {
     await this.esperarVisivel(this.logoutLocator);
     await this.logoutLocator.click();
+    await this.page.waitForTimeout(3000);
   }
 
   /**

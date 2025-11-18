@@ -13,12 +13,12 @@ test.describe("Teste de Cadastro de usuário interno  no sistema", () => {
     test.slow();
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
+
     const cadastroUsuarioPage = new CadastroUsuarioPage(page);
     const listaUsuariosPage = new ListaUsuariosPage(page);
-
-    let userData: { name: string; email: string; password: string };
-
+    
     await test.step("Realizar login com CREDENCIAIS VÁLIDAS Administrador", async () => {
+      let userData: { name: string; email: string; password: string };
       await loginPage.clickRegister();
       userData = await loginPage.registerNormalNewUser("SIM");
       await homePage.validarMenuAdministrador();
@@ -27,8 +27,10 @@ test.describe("Teste de Cadastro de usuário interno  no sistema", () => {
     await test.step("Cadastrar novo usuário no menu 'cadastrar usuário'", async () => {
       await homePage.clicarMenuCadastrarUsuario();
       await homePage.validarMenuAdministrador();
-      const nomeEsperado = await cadastroUsuarioPage.gerarCadastroUsuarios("Usuario Teste", "emailteste@example.com", "123456");
+      let newUserData = await cadastroUsuarioPage.gerarCadastroUsuario();
+      const nomeEsperado = await cadastroUsuarioPage.gravarCadastroUsuarios(newUserData.name, newUserData.email, newUserData.password);
       await listaUsuariosPage.validarGrid(nomeEsperado);
     });
+    
   });
 });
